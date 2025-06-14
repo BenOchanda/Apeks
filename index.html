@@ -106,7 +106,6 @@
             position: relative;
         }
         
-        /* Navbar hover changed to red */
         nav a:hover {
             color: var(--kenyan-red);
         }
@@ -132,13 +131,13 @@
             border: none;
             color: white;
             font-size: 24px;
-            cursor: button;
+            cursor: pointer;
         }
         
-        /* Hero Section with new Kenyan background */
+        /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('https://images.unsplash.com/photo-1593118247619-e2d6f056869e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+                        url('https://images.unsplash.com/photo-1563387852576-964bc31d73a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             min-height: 100vh;
@@ -194,7 +193,6 @@
             border: 2px solid transparent;
         }
         
-        /* Button hover changed to reddish */
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
@@ -303,6 +301,8 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: var(--transition);
             border-top: 4px solid var(--kenyan-red);
+            cursor: pointer;
+            position: relative;
         }
         
         .service-card:hover {
@@ -339,6 +339,25 @@
             font-weight: 600;
             display: inline-block;
             margin-bottom: 15px;
+        }
+        
+        .service-learn-more {
+            display: none;
+            text-align: center;
+            padding: 15px;
+            background: var(--kenyan-green);
+            color: white;
+            font-weight: 600;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-learn-more {
+            display: block;
         }
         
         /* Projects Section */
@@ -619,6 +638,402 @@
             opacity: 0.7;
         }
         
+        /* Service Detail Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .modal-header h3 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin: 0;
+        }
+        
+        .close-modal {
+            background: var(--kenyan-red);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-body {
+            line-height: 1.8;
+        }
+        
+        .modal-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--kenyan-green);
+        }
+        
+        .modal-cta {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        /* Hosting Flow Modal */
+        .hosting-flow {
+            display: none;
+        }
+        
+        .quiz-step {
+            display: none;
+        }
+        
+        .quiz-step.active {
+            display: block;
+        }
+        
+        .quiz-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .quiz-progress::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--light);
+            z-index: 1;
+        }
+        
+        .progress-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 24%;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+            color: var(--dark);
+            border: 3px solid var(--light);
+        }
+        
+        .progress-step.active .step-number {
+            background: var(--kenyan-green);
+            color: white;
+            border-color: var(--kenyan-green);
+        }
+        
+        .progress-step.completed .step-number {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+        
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .quiz-option {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+        
+        .quiz-option:hover, .quiz-option.selected {
+            border-color: var(--kenyan-green);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .quiz-option i {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .quiz-option h4 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .quiz-option p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+        
+        .quiz-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        /* Security Options */
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .security-option {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .security-option:hover, .security-option.selected {
+            border-color: var(--kenyan-green);
+        }
+        
+        .security-option i {
+            color: var(--kenyan-red);
+            font-size: 24px;
+        }
+        
+        .security-option span {
+            font-weight: 500;
+        }
+        
+        /* Plan Recommendation */
+        .recommended-plan {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 12px;
+            padding: 30px;
+            color: white;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .recommended-plan h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .plan-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--kenyan-green);
+            display: block;
+            margin: 10px 0;
+        }
+        
+        .plan-features {
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
+        
+        .plan-features p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .plan-features i {
+            color: var(--kenyan-green);
+        }
+        
+        .plan-price {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        .plan-price h4 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+        
+        .discount-note {
+            background: var(--kenyan-green);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+        }
+        
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: normal;
+        }
+        
+        .privacy-note {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Confirmation */
+        .confirmation {
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .confirmation-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--kenyan-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 36px;
+            color: white;
+        }
+        
+        .next-steps {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: left;
+            max-width: 600px;
+            margin: 30px auto;
+        }
+        
+        .next-steps ol {
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+        
+        .next-steps li {
+            margin-bottom: 15px;
+        }
+        
+        .immediate-resources {
+            margin-top: 30px;
+        }
+        
+        .resource-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+            padding: 15px;
+            background: var(--light);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+        
+        .resource-link:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .resource-link i {
+            font-size: 24px;
+        }
+        
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
@@ -662,6 +1077,10 @@
             .section-title h2 {
                 font-size: 2rem;
             }
+            
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 576px) {
@@ -676,10 +1095,17 @@
             .cta-button {
                 padding: 12px 25px;
                 font-size: 1rem;
+                display: block;
+                margin: 10px auto;
             }
             
             .stat-value {
                 font-size: 2.5rem;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 10px;
             }
         }
     </style>
@@ -707,7 +1133,7 @@
         </div>
     </header>
 
-    <!-- Hero Section with new Kenyan background -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container hero-content">
             <div class="swahili-tagline">Tunajenga Njia Mpya ya Kidijitali</div>
@@ -753,64 +1179,70 @@
             </div>
             
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card" data-service="custom-web">
                     <div class="service-icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
                     <div class="service-content">
                         <h3>Custom Web Applications</h3>
-                        <p>Tailor-made solutions designed specifically for Kenyan business challenges. From inventory systems to customer management, we build apps that grow with your business.</p>
+                        <p>Tailor-made solutions designed specifically for Kenyan business challenges.</p>
+                        <div class="service-learn-more">Learn More →</div>
                     </div>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card" data-service="hosting">
                     <div class="service-icon">
                         <i class="fas fa-server"></i>
                     </div>
                     <div class="service-content">
                         <span class="popular-badge">Most Popular</span>
                         <h3>Web Hosting & Security</h3>
-                        <p>Secure, reliable hosting on Google Cloud Platform with Kenyan performance optimization. Includes SSL certificates, daily backups, and 24/7 monitoring.</p>
+                        <p>Secure, reliable hosting optimized for Kenyan businesses.</p>
+                        <div class="service-learn-more">Learn More →</div>
                     </div>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card" data-service="pwa">
                     <div class="service-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
                     <div class="service-content">
                         <h3>Progressive Web Apps</h3>
-                        <p>Offline-capable applications that work seamlessly even in areas with intermittent connectivity. Perfect for rural businesses and mobile users.</p>
+                        <p>Offline-capable applications for areas with intermittent connectivity.</p>
+                        <div class="service-learn-more">Learn More →</div>
                     </div>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card" data-service="api">
                     <div class="service-icon">
                         <i class="fas fa-plug"></i>
                     </div>
                     <div class="service-content">
                         <h3>API Integrations</h3>
-                        <p>Seamless integration with M-Pesa, iTax, e-Citizen and other essential Kenyan platforms. Connect your systems to the services that matter.</p>
+                        <p>Seamless integration with M-Pesa, iTax, and other Kenyan platforms.</p>
+                        <div class="service-learn-more">Learn More →</div>
                     </div>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card" data-service="seo">
                     <div class="service-icon">
                         <i class="fas fa-search"></i>
                     </div>
                     <div class="service-content">
                         <h3>SEO & Digital Marketing</h3>
-                        <p>Increase your online visibility in Kenya and beyond. Our strategies are tailored for the African digital landscape.</p>
+                        <p>Increase your online visibility in Kenya and beyond.</p>
+                        <div class="service-learn-more">Learn More →</div>
                     </div>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card" data-service="security">
                     <div class="service-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <div class="service-content">
                         <h3>Cybersecurity Solutions</h3>
-                        <p>Protect your business data with our comprehensive security audits and implementation services designed for Kenyan regulatory requirements.</p>
+                        <p>Protect your business data with comprehensive security audits.</p>
+                        <div class="service-learn-more">Learn More →</div>
                     </div>
                 </div>
             </div>
@@ -830,7 +1262,7 @@
                     <div class="project-content">
                         <span class="project-tag">Featured Project</span>
                         <h3>ShuleDirect Management System</h3>
-                        <p>A comprehensive school management platform inspired by Zeraki, designed specifically for Kenyan educational institutions. Features include student management, fee tracking, exam analytics, and SMS integration.</p>
+                        <p>A comprehensive school management platform inspired by Zeraki, designed specifically for Kenyan educational institutions.</p>
                     </div>
                 </div>
                 
@@ -839,7 +1271,7 @@
                     <div class="project-content">
                         <span class="project-tag">In Development</span>
                         <h3>BiasharaLink Connector</h3>
-                        <p>A B2B platform connecting Kenyan businesses with suppliers nationwide. Features include verified listings, inventory management, M-Pesa integration, and logistics coordination.</p>
+                        <p>A B2B platform connecting Kenyan businesses with suppliers nationwide.</p>
                     </div>
                 </div>
                 
@@ -848,7 +1280,7 @@
                     <div class="project-content">
                         <span class="project-tag">Coming Soon</span>
                         <h3>Enterprise Hosting Platform</h3>
-                        <p>A specialized hosting solution optimized for Kenyan businesses, featuring local caching, Swahili-language support, and integrated USSD functionality for customer engagement.</p>
+                        <p>A specialized hosting solution optimized for Kenyan businesses.</p>
                     </div>
                 </div>
             </div>
@@ -939,7 +1371,7 @@
                     <p><i class="fas fa-envelope"></i> apexkelabs@gmail.com</p>
                     <p><i class="fas fa-map-marker-alt"></i> Mombasa, Kenya</p>
                     <p><i class="fas fa-phone"></i> +254 743 581 914</p>
-                    <p><i class="fas fa-globe"></i> www.apexkelabs.com (Coming Soon)</p>
+                    <p><i class="fas fa-globe"></i> www.apexkelabs.com</p>
                 </div>
             </div>
             
@@ -948,6 +1380,257 @@
             </div>
         </div>
     </footer>
+
+    <!-- Service Detail Modal -->
+    <div class="modal-overlay" id="service-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Service Details</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Hosting Service Flow Modal -->
+    <div class="modal-overlay" id="hosting-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Hosting & Security Solutions</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <!-- Progress Tracker -->
+            <div class="quiz-progress">
+                <div class="progress-step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Your Needs</div>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Security</div>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Your Plan</div>
+                </div>
+                <div class="progress-step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Contact</div>
+                </div>
+            </div>
+            
+            <!-- Step 1: Hosting Needs -->
+            <div class="quiz-step active" id="step-1">
+                <h3>What best describes your hosting needs?</h3>
+                <p>Select the option that matches your requirements</p>
+                
+                <div class="quiz-options">
+                    <div class="quiz-option" data-value="starter">
+                        <i class="fas fa-blog"></i>
+                        <h4>Simple Website/Blog</h4>
+                        <p>Basic hosting for personal sites or small blogs</p>
+                    </div>
+                    
+                    <div class="quiz-option" data-value="business">
+                        <i class="fas fa-store"></i>
+                        <h4>Business Website</h4>
+                        <p>For SMEs, portfolios, and professional sites</p>
+                    </div>
+                    
+                    <div class="quiz-option" data-value="ecommerce">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h4>E-commerce Store</h4>
+                        <p>Online stores with product listings and payments</p>
+                    </div>
+                    
+                    <div class="quiz-option" data-value="enterprise">
+                        <i class="fas fa-building"></i>
+                        <h4>Enterprise Application</h4>
+                        <p>High-traffic sites and complex applications</p>
+                    </div>
+                </div>
+                
+                <div class="quiz-actions">
+                    <button class="cta-button quiz-next" disabled>Next Step →</button>
+                </div>
+            </div>
+            
+            <!-- Step 2: Security Requirements -->
+            <div class="quiz-step" id="step-2">
+                <h3>Which security features are essential for you?</h3>
+                <p>Select all that apply to your business</p>
+                
+                <div class="security-grid">
+                    <div class="security-option" data-value="ssl">
+                        <i class="fas fa-lock"></i>
+                        <span>SSL Certificate</span>
+                    </div>
+                    
+                    <div class="security-option" data-value="backup">
+                        <i class="fas fa-save"></i>
+                        <span>Daily Backups</span>
+                    </div>
+                    
+                    <div class="security-option" data-value="firewall">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Advanced Firewall</span>
+                    </div>
+                    
+                    <div class="security-option" data-value="malware">
+                        <i class="fas fa-bug"></i>
+                        <span>Malware Scanning</span>
+                    </div>
+                    
+                    <div class="security-option" data-value="ddos">
+                        <i class="fas fa-network-wired"></i>
+                        <span>DDoS Protection</span>
+                    </div>
+                    
+                    <div class="security-option" data-value="monitoring">
+                        <i class="fas fa-eye"></i>
+                        <span>24/7 Monitoring</span>
+                    </div>
+                    
+                    <div class="security-option" data-value="compliance">
+                        <i class="fas fa-file-contract"></i>
+                        <span>GDPR Compliance</span>
+                    </div>
+                    
+                    <div class="security-option" data-value="support">
+                        <i class="fas fa-headset"></i>
+                        <span>Priority Support</span>
+                    </div>
+                </div>
+                
+                <div class="quiz-actions">
+                    <button class="cta-button quiz-prev">← Previous</button>
+                    <button class="cta-button quiz-next" disabled>Next Step →</button>
+                </div>
+            </div>
+            
+            <!-- Step 3: Plan Recommendation -->
+            <div class="quiz-step" id="step-3">
+                <h3>Your Personalized Hosting Solution</h3>
+                <p>Based on your requirements, we recommend:</p>
+                
+                <div class="recommended-plan">
+                    <h3>Recommended Plan</h3>
+                    <span class="plan-name" id="recommended-plan">Business Hosting Pro</span>
+                    
+                    <div class="plan-features">
+                        <p><i class="fas fa-check-circle"></i> 50GB SSD Storage</p>
+                        <p><i class="fas fa-check-circle"></i> Unlimited Bandwidth</p>
+                        <p><i class="fas fa-check-circle"></i> Free SSL Certificate</p>
+                        <p><i class="fas fa-check-circle"></i> Daily Backups</p>
+                        <p><i class="fas fa-check-circle"></i> Advanced Firewall</p>
+                        <p><i class="fas fa-check-circle"></i> 24/7 Monitoring</p>
+                        <p><i class="fas fa-check-circle"></i> Kenyan Server Optimization</p>
+                    </div>
+                    
+                    <div class="plan-price">
+                        <h4>KSh 4,999 <span>/month</span></h4>
+                        <div class="discount-note">First 3 months at 50% off for new customers!</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-actions">
+                    <button class="cta-button quiz-prev">← Previous</button>
+                    <button class="cta-button quiz-next">Get Your Plan →</button>
+                </div>
+            </div>
+            
+            <!-- Step 4: Contact Form -->
+            <div class="quiz-step" id="step-4">
+                <h3>Get Your Personalized Hosting Solution</h3>
+                <p>Complete this quick form and our team will contact you within 1 business hour</p>
+                
+                <div class="contact-form">
+                    <form id="hosting-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required placeholder="John Kamau">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="john@business.co.ke">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="+254 700 123 456">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="business">Business Name</label>
+                            <input type="text" id="business" name="business" placeholder="My Kenyan Business">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="domain">Domain Name (if you have one)</label>
+                            <input type="text" id="domain" name="domain" placeholder="mybusiness.co.ke">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Preferred Contact Method</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="contact-method" value="email" checked> Email</label>
+                                <label><input type="radio" name="contact-method" value="phone"> Phone</label>
+                                <label><input type="radio" name="contact-method" value="whatsapp"> WhatsApp</label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="cta-button">Get My Hosting Solution</button>
+                        
+                        <div class="privacy-note">
+                            <p>By submitting, you agree to our <a href="#">Privacy Policy</a>. We'll never share your information with third parties.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Step 5: Confirmation -->
+            <div class="quiz-step" id="step-5">
+                <div class="confirmation">
+                    <div class="confirmation-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h3>Asante! Thank You for Your Request!</h3>
+                    <p>We've received your hosting inquiry and our team is already reviewing your requirements.</p>
+                    
+                    <div class="next-steps">
+                        <p><strong>What happens next:</strong></p>
+                        <ol>
+                            <li>You'll receive an email confirmation with your request details within 5 minutes</li>
+                            <li>Our hosting specialist will contact you within 1 business hour</li>
+                            <li>We'll prepare a customized proposal based on your needs</li>
+                            <li>Get your hosting setup within 24 hours of approval</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="immediate-resources">
+                        <p><strong>While you wait, explore these resources:</strong></p>
+                        <a href="#" class="resource-link">
+                            <i class="fas fa-file-download"></i> Download: Hosting Setup Checklist
+                        </a>
+                        <a href="#" class="resource-link">
+                            <i class="fas fa-play-circle"></i> Watch: How Our Hosting Benefits Kenyan Businesses
+                        </a>
+                        <a href="#" class="resource-link">
+                            <i class="fas fa-book"></i> Read: Kenyan Hosting Security Best Practices
+                        </a>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <button class="cta-button close-modal">Return to Website</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Simple smooth scrolling for navigation links
@@ -983,7 +1666,311 @@
             timerElement.innerHTML = `<i class="fas fa-clock"></i> Launch Discount: 20% off .co.ke hosting - Offer ends in ${days} days, ${hours} hours!`;
         }
         
-        // Update timer every hour
+        // Service modal functionality
+        const serviceModal = document.getElementById('service-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const closeServiceModal = document.querySelector('#service-modal .close-modal');
+        
+        // Hosting modal functionality
+        const hostingModal = document.getElementById('hosting-modal');
+        const closeHostingModal = document.querySelector('#hosting-modal .close-modal');
+        
+        // Service details data
+        const serviceDetails = {
+            'custom-web': {
+                title: 'Custom Web Applications',
+                description: 'We build tailor-made web applications designed specifically for Kenyan business challenges. Our solutions are crafted to address the unique needs of Kenyan enterprises, from SMEs to educational institutions.',
+                features: [
+                    'Business-specific solutions built for Kenyan market needs',
+                    'Scalable architecture that grows with your business',
+                    'User-friendly interfaces with Swahili language support',
+                    'Integration with Kenyan payment systems (M-Pesa)',
+                    'Mobile-responsive design for all devices'
+                ],
+                benefits: [
+                    'Streamline business operations and increase efficiency',
+                    'Gain competitive advantage with custom features',
+                    'Access real-time data analytics for better decisions',
+                    'Reduce operational costs through automation'
+                ]
+            },
+            'hosting': {
+                title: 'Web Hosting & Security',
+                description: 'Our secure, reliable hosting on Google Cloud Platform is optimized for Kenyan performance. We provide comprehensive hosting solutions with Kenyan businesses in mind.',
+                features: [
+                    'Hosting on Google Cloud Platform with African region optimization',
+                    'Free SSL certificates for all hosted websites',
+                    'Daily automated backups and 24/7 monitoring',
+                    'DDoS protection and malware scanning',
+                    'Free domain with annual hosting plans'
+                ],
+                benefits: [
+                    'Faster loading times for Kenyan users',
+                    'Enhanced security against cyber threats',
+                    '99.9% uptime guarantee for your business',
+                    'Scalable resources as your business grows'
+                ]
+            },
+            'pwa': {
+                title: 'Progressive Web Apps',
+                description: 'We create offline-capable applications that work seamlessly even in areas with intermittent connectivity. Perfect for businesses targeting customers across Kenya.',
+                features: [
+                    'Works offline or with poor internet connection',
+                    'App-like experience without installation',
+                    'Push notification capabilities',
+                    'Fast loading even on 2G networks',
+                    'Low data consumption for cost efficiency'
+                ],
+                benefits: [
+                    'Reach customers in rural areas with limited connectivity',
+                    'Increase engagement with app-like experience',
+                    'Reduce data costs for your customers',
+                    'Works across all devices and platforms'
+                ]
+            },
+            'api': {
+                title: 'API Integrations',
+                description: 'We seamlessly integrate with M-Pesa, iTax, e-Citizen and other essential Kenyan platforms to connect your systems to the services that matter.',
+                features: [
+                    'M-Pesa payment gateway integration',
+                    'iTax and KRA compliance solutions',
+                    'e-Citizen service integrations',
+                    'SMS gateway integration for notifications',
+                    'Custom API development for unique needs'
+                ],
+                benefits: [
+                    'Streamline business operations with government services',
+                    'Accept mobile payments from any device',
+                    'Automate tax compliance and reporting',
+                    'Enhance customer experience with integrated services'
+                ]
+            },
+            'seo': {
+                title: 'SEO & Digital Marketing',
+                description: 'We increase your online visibility in Kenya and beyond with strategies tailored for the African digital landscape.',
+                features: [
+                    'Local SEO optimization for Kenyan businesses',
+                    'Content marketing with Swahili language options',
+                    'Social media marketing across African platforms',
+                    'Google Ads campaigns targeting Kenyan users',
+                    'Analytics and performance reporting'
+                ],
+                benefits: [
+                    'Rank higher in Kenyan search results',
+                    'Attract more local customers to your business',
+                    'Increase conversions with targeted campaigns',
+                    'Track ROI with detailed analytics'
+                ]
+            },
+            'security': {
+                title: 'Cybersecurity Solutions',
+                description: 'We protect your business data with comprehensive security audits and implementation services designed for Kenyan regulatory requirements.',
+                features: [
+                    'GDPR and Kenyan Data Protection Act compliance',
+                    'Vulnerability assessments and penetration testing',
+                    'Security awareness training for your team',
+                    '24/7 threat monitoring and response',
+                    'Data encryption and secure backup solutions'
+                ],
+                benefits: [
+                    'Protect sensitive customer and business data',
+                    'Meet Kenyan regulatory compliance requirements',
+                    'Prevent costly data breaches and downtime',
+                    'Build customer trust with robust security'
+                ]
+            }
+        };
+        
+        // Service card click handler
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const serviceId = this.getAttribute('data-service');
+                const service = serviceDetails[serviceId];
+                
+                if (service) {
+                    modalTitle.textContent = service.title;
+                    
+                    // Build modal content
+                    let content = `
+                        <p>${service.description}</p>
+                        
+                        <h4>Key Features:</h4>
+                        <div class="modal-features">
+                    `;
+                    
+                    service.features.forEach(feature => {
+                        content += `<div class="feature-card">${feature}</div>`;
+                    });
+                    
+                    content += `</div>
+                        
+                        <h4>Business Benefits:</h4>
+                        <ul class="benefits-list">`;
+                    
+                    service.benefits.forEach(benefit => {
+                        content += `<li><i class="fas fa-check-circle" style="color: var(--kenyan-green);"></i> ${benefit}</li>`;
+                    });
+                    
+                    content += `</ul>
+                        <div class="modal-cta">
+                            <a href="#contact" class="cta-button">Request Consultation</a>`;
+                    
+                    // Add special button for hosting service
+                    if (serviceId === 'hosting') {
+                        content += `<button class="cta-button start-hosting" style="margin-left: 15px;">Get Started with Hosting</button>`;
+                    }
+                    
+                    content += `</div>`;
+                    
+                    modalBody.innerHTML = content;
+                    serviceModal.style.display = 'flex';
+                    
+                    // Add event listener for hosting button if present
+                    const startHostingBtn = document.querySelector('.start-hosting');
+                    if (startHostingBtn) {
+                        startHostingBtn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            serviceModal.style.display = 'none';
+                            hostingModal.style.display = 'flex';
+                            document.body.style.overflow = 'hidden';
+                            showStep(1);
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Close service modal
+        closeServiceModal.addEventListener('click', () => {
+            serviceModal.style.display = 'none';
+        });
+        
+        // Close service modal when clicking outside
+        serviceModal.addEventListener('click', (e) => {
+            if (e.target === serviceModal) {
+                serviceModal.style.display = 'none';
+            }
+        });
+        
+        // Hosting Flow Functionality
+        let currentStep = 1;
+        
+        function showStep(stepNumber) {
+            // Hide all steps
+            document.querySelectorAll('.quiz-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            // Show current step
+            document.getElementById(`step-${stepNumber}`).classList.add('active');
+            
+            // Update progress indicators
+            document.querySelectorAll('.progress-step').forEach(step => {
+                const stepNum = parseInt(step.dataset.step);
+                step.classList.remove('active', 'completed');
+                
+                if (stepNum === stepNumber) {
+                    step.classList.add('active');
+                } else if (stepNum < stepNumber) {
+                    step.classList.add('completed');
+                }
+            });
+            
+            currentStep = stepNumber;
+        }
+        
+        // Next button functionality
+        document.querySelectorAll('.quiz-next').forEach(button => {
+            button.addEventListener('click', () => {
+                if (currentStep < 5) {
+                    showStep(currentStep + 1);
+                }
+            });
+        });
+        
+        // Previous button functionality
+        document.querySelectorAll('.quiz-prev').forEach(button => {
+            button.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    showStep(currentStep - 1);
+                }
+            });
+        });
+        
+        // Option selection for step 1
+        const hostingOptions = document.querySelectorAll('#step-1 .quiz-option');
+        const step1NextBtn = document.querySelector('#step-1 .quiz-next');
+        
+        hostingOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected class from all options
+                hostingOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Add selected class to clicked option
+                option.classList.add('selected');
+                
+                // Enable next button
+                step1NextBtn.disabled = false;
+                
+                // Update recommended plan based on selection
+                const planName = document.getElementById('recommended-plan');
+                const value = option.dataset.value;
+                
+                if (value === 'starter') {
+                    planName.textContent = 'Starter Hosting';
+                } else if (value === 'business') {
+                    planName.textContent = 'Business Hosting Pro';
+                } else if (value === 'ecommerce') {
+                    planName.textContent = 'E-commerce Hosting';
+                } else if (value === 'enterprise') {
+                    planName.textContent = 'Enterprise Hosting Suite';
+                }
+            });
+        });
+        
+        // Option selection for step 2
+        const securityOptions = document.querySelectorAll('#step-2 .security-option');
+        const step2NextBtn = document.querySelector('#step-2 .quiz-next');
+        
+        securityOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Toggle selected class
+                option.classList.toggle('selected');
+                
+                // Enable next button if at least one option is selected
+                const selectedOptions = document.querySelectorAll('#step-2 .security-option.selected');
+                step2NextBtn.disabled = selectedOptions.length === 0;
+            });
+        });
+        
+        // Form submission
+        document.getElementById('hosting-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showStep(5);
+        });
+        
+        // Close hosting modal
+        closeHostingModal.addEventListener('click', () => {
+            hostingModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close hosting modal when clicking outside
+        hostingModal.addEventListener('click', (e) => {
+            if (e.target === hostingModal) {
+                hostingModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Return to website button in confirmation
+        document.querySelector('.close-modal')?.addEventListener('click', () => {
+            hostingModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Initialize the flow
         updateTimer();
         setInterval(updateTimer, 3600000);
     </script>
